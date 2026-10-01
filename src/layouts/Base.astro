@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import { sitio } from '../data/sitio.mjs';
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion = sitio.descripcion } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} · ${sitio.autor}` : sitio.titulo;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// El enlace a "Escritos" aparece solo cuando hay al menos uno publicado.
+const hayEscritos = (await getCollection('escritos', ({ data }) => !data.borrador)).length > 0;
+---
+<!doctype html>
+<html lang={sitio.idioma}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="cabecera">
+      <nav class="contenedor">
+        <a href="/" class="marca">Jorge Miranda</a>
+        <div class="links">
+          {hayEscritos && <a href="/escritos/">Escritos</a>}
+          <a href="/#contacto">Contacto</a>
+          <a href={sitio.cv} download>CV</a>
+        </div>
+      </nav>
+    </header>
+    <main class="contenedor">
+      <slot />
+    </main>
+    <footer class="contenedor pie muted">
+      <span>© {new Date().getFullYear()} {sitio.autor}</span>
+      <span>
+        <a href={sitio.linkedin} rel="me">LinkedIn</a> · <a href={sitio.github} rel="me">GitHub</a>
+      </span>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .cabecera { border-bottom: 2px dashed var(--line); }
+  nav { display: flex; justify-content: space-between; align-items: center; height: 3.5rem; }
+  .marca { font-family: var(--pixel); font-size: 1.7rem; color: var(--accent); text-decoration: none; }
+  .links { display: flex; gap: 1.25rem; font-family: var(--pixel); font-size: 1.4rem; }
+  .links a { color: var(--muted); text-decoration: none; }
+  .links a:hover { color: var(--accent); }
+  .pie {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    border-top: 2px dashed var(--line); margin-top: 4rem; padding-top: 1.25rem; padding-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+</style>

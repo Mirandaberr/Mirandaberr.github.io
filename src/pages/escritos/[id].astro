@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const escritos = await getCollection('escritos', ({ data }) => !data.borrador);
+  return escritos.map((escrito) => ({ params: { id: escrito.id }, props: { escrito } }));
+}
+
+const { escrito } = Astro.props;
+const { Content } = await render(escrito);
+const formato = new Intl.DateTimeFormat('es-CL', { dateStyle: 'long', timeZone: 'UTC' });
+---
+<Base titulo={escrito.data.titulo} descripcion={escrito.data.resumen}>
+  <article>
+    <header>
+      <time class="muted" datetime={escrito.data.fecha.toISOString()}>{formato.format(escrito.data.fecha)}</time>
+      <h1>{escrito.data.titulo}</h1>
+      <div>{escrito.data.etiquetas.map((t) => <span class="etiqueta">{t}</span>)}</div>
+    </header>
+    <div class="cuerpo"><Content /></div>
+  </article>
+  <p><a href="/escritos/">← Todos los escritos</a></p>
+</Base>
+
+<style>
+  header { margin: 3rem 0 2rem; }
+  h1 { font-size: clamp(2.3rem, 6vw, 3rem); margin: 0.3rem 0 0.75rem; }
+  .cuerpo :global(pre) { overflow-x: auto; padding: 1rem; border-radius: 8px; font-size: 0.9rem; }
+  .cuerpo :global(code) { font-size: 0.92em; }
+  .cuerpo :global(h2) { margin-top: 2.5rem; }
+</style>

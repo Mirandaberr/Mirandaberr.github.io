@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const escritos = (await getCollection('escritos', ({ data }) => !data.borrador))
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
+const formato = new Intl.DateTimeFormat('es-CL', { dateStyle: 'long', timeZone: 'UTC' });
+---
+<Base titulo="Escritos" descripcion="Notas técnicas sobre backend, performance y sistemas distribuidos.">
+  <h1 class="titulo">Escritos</h1>
+  <p class="muted">Notas técnicas sobre problemas reales que me ha tocado resolver.</p>
+  <ul class="lista">
+    {escritos.map((e) => (
+      <li>
+        <time class="muted" datetime={e.data.fecha.toISOString()}>{formato.format(e.data.fecha)}</time>
+        <h2><a href={`/escritos/${e.id}/`}>{e.data.titulo}</a></h2>
+        <p>{e.data.resumen}</p>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .titulo { margin-top: 3rem; }
+  .lista { list-style: none; padding: 0; }
+  .lista li { margin: 2rem 0; }
+  .lista h2 { font-size: 1.7rem; margin: 0.2rem 0 0.4rem; }
+  .lista p { margin: 0; }
+  time { font-size: 0.9rem; }
+</style>

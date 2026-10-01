@@ -1,0 +1,78 @@
+---
+// Carrusel infinito de tecnologías. Íconos de Simple Icons (CC0), dibujados
+// en un solo color para que respeten la paleta del sitio.
+import {
+  siOpenjdk, siSpringboot, siApachekafka, siRedis, siDocker, siKubernetes,
+  siGooglecloud, siGooglebigquery, siTypescript, siJavascript, siPython,
+  siAngular, siGit, siSwagger, siClaude, siGithubcopilot, siCursor, siWindsurf,
+} from 'simple-icons';
+
+const tecnologias = [
+  { nombre: 'Java', icono: siOpenjdk },
+  { nombre: 'Spring Boot', icono: siSpringboot },
+  { nombre: 'Kafka', icono: siApachekafka },
+  { nombre: 'Redis', icono: siRedis },
+  { nombre: 'Docker', icono: siDocker },
+  { nombre: 'Kubernetes', icono: siKubernetes },
+  { nombre: 'Google Cloud', icono: siGooglecloud },
+  { nombre: 'BigQuery', icono: siGooglebigquery },
+  { nombre: 'TypeScript', icono: siTypescript },
+  { nombre: 'JavaScript', icono: siJavascript },
+  { nombre: 'Python', icono: siPython },
+  { nombre: 'Angular', icono: siAngular },
+  { nombre: 'Git', icono: siGit },
+  { nombre: 'Swagger', icono: siSwagger },
+  { nombre: 'Claude', icono: siClaude },
+  { nombre: 'GitHub Copilot', icono: siGithubcopilot },
+  { nombre: 'Cursor', icono: siCursor },
+  { nombre: 'Windsurf', icono: siWindsurf },
+];
+---
+<div class="stack" aria-label="Tecnologías con las que he trabajado">
+  <!-- La lista va dos veces para que la animación se repita sin saltos;
+       la copia se oculta a lectores de pantalla. -->
+  {[false, true].map((copia) => (
+    <ul class="pista" aria-hidden={copia ? 'true' : undefined}>
+      {tecnologias.map((t) => (
+        <li>
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d={t.icono.path} /></svg>
+          <span>{t.nombre}</span>
+        </li>
+      ))}
+    </ul>
+  ))}
+</div>
+
+<style>
+  .stack {
+    display: flex;
+    overflow: hidden;
+    border-top: 2px dashed var(--line);
+    border-bottom: 2px dashed var(--line);
+    padding: 1.1rem 0;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .pista {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2.5rem;
+    padding: 0 1.25rem;
+    margin: 0;
+    list-style: none;
+    animation: desplazar 45s linear infinite;
+  }
+  .stack:hover .pista { animation-play-state: paused; }
+  li { display: flex; align-items: center; gap: 0.6rem; white-space: nowrap; color: var(--muted); }
+  li:hover { color: var(--accent); }
+  svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
+  span { font-family: var(--pixel); font-size: 1.4rem; }
+
+  @keyframes desplazar { to { transform: translateX(-100%); } }
+
+  /* Sin animación: se muestra como una grilla estática. */
+  @media (prefers-reduced-motion: reduce) {
+    .stack { mask-image: none; }
+    .pista { animation: none; flex-wrap: wrap; flex-shrink: 1; row-gap: 1rem; }
+    .pista[aria-hidden='true'] { display: none; }
+  }
+</style>
