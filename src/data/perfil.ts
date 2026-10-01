@@ -3,10 +3,20 @@
 
 export const presentacion = {
   nombre: 'Jorge Miranda Berrios',
-  rol: 'Backend Software Engineer',
+  // El primero es el que se muestra al cargar, sin JavaScript
+  // y a quien tiene desactivadas las animaciones.
+  roles: [
+    'Backend Software Engineer',
+    'Backend Developer',
+    'Software Developer',
+    'Software Engineer',
+    'Software Engineer Fullstack',
+    'Programador Backend',
+    'Programador Fullstack',
+  ],
   ubicacion: 'Santiago, Chile',
   resumen:
-    'Construyo microservicios en Java y Spring Boot para sistemas donde la performance y la confiabilidad importan: e-commerce de alto tráfico, el mercado bursátil y medios de pago.',
+    'Diseño y construyo backends de alto volumen para e-commerce, mercado bursátil y medios de pago, con Java, Spring Boot, Kafka, Redis y GCP. Me muevo cómodo entre el código y el negocio: traduzco lo que necesitan los stakeholders en decisiones técnicas y explico esas decisiones en un lenguaje que todos entienden.',
 };
 
 export const destacados = [
