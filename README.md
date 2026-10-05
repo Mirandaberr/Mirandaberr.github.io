@@ -18,7 +18,7 @@ npm run build    # genera dist/
 | Datos generales (email, LinkedIn, URL) | `src/data/sitio.mjs` |
 | Presentación, destacados, experiencia, habilidades | `src/data/perfil.ts` |
 | Escritos | `src/content/escritos/*.md` |
-| CV descargable | `public/cv/CV_Jorge_Miranda_Backend.pdf` |
+| CV descargable (ES / EN) | `public/cv/CV_Jorge_Miranda_Software_Engineer.pdf`, `public/cv/CV_Jorge_Miranda_Software_Engineer_EN.pdf` |
 
 ## Escritos
 
@@ -40,8 +40,9 @@ y cambia `borrador` a `false`.
 
 ## CV
 
-El PDF público es la versión sin teléfono. Se genera desde la fuente del CV con:
+Los PDFs públicos son la versión sin teléfono. Se generan desde las fuentes del CV con:
 
 ```sh
-~/Documents/perfil-profesional/fuentes/generar_pdf.sh --web public/cv/CV_Jorge_Miranda_Backend.pdf
+~/Documents/perfil-profesional/fuentes/generar_pdf.sh --web public/cv/CV_Jorge_Miranda_Software_Engineer.pdf
+~/Documents/perfil-profesional/fuentes/generar_pdf.sh --en --web public/cv/CV_Jorge_Miranda_Software_Engineer_EN.pdf
 ```

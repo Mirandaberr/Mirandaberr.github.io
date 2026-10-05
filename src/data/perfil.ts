@@ -3,20 +3,19 @@
 
 export const presentacion = {
   nombre: 'Jorge Miranda Berrios',
-  // El primero es el que se muestra al cargar, sin JavaScript
-  // y a quien tiene desactivadas las animaciones.
+  // The first role is shown on load, without JavaScript and with reduced motion.
   roles: [
-    'Backend Software Engineer',
-    'Backend Developer',
-    'Software Developer',
     'Software Engineer',
+    'Backend Software Engineer',
+    'Software Developer',
+    'Backend Developer',
     'Software Engineer Fullstack',
     'Programador Backend',
     'Programador Fullstack',
   ],
   ubicacion: 'Santiago, Chile',
   resumen:
-    'Diseño y construyo backends de alto volumen para e-commerce, mercado bursátil y medios de pago, con Java, Spring Boot, Kafka, Redis y GCP. Me muevo cómodo entre el código y el negocio: traduzco lo que necesitan los stakeholders en decisiones técnicas y explico esas decisiones en un lenguaje que todos entienden.',
+    'Construyo sistemas de alto volumen para e-commerce, mercado bursátil y medios de pago. Foco en backend con Java, Spring Boot, Kafka y Redis, y experiencia en frontend, pipelines de datos e IA aplicada al desarrollo. Me muevo cómodo entre el código y el negocio: traduzco lo que necesitan los stakeholders en decisiones técnicas y las explico en un lenguaje que todos entienden.',
 };
 
 export const destacados = [
@@ -36,7 +35,7 @@ export const destacados = [
     cifra: '5 s → 200 ms',
     titulo: 'Integración con el motor Nasdaq',
     detalle:
-      'Optimicé la comunicación entre los motores legacy de las bolsas y Nasdaq, con picos de 10.000 requests por minuto.',
+      'Optimicé la comunicación entre los motores legacy de las bolsas de Chile, Perú y Colombia y el motor de Nasdaq.',
   },
 ];
 
@@ -49,8 +48,8 @@ export const experiencia = [
     logros: [
       'Reduje el tiempo de respuesta de un endpoint crítico de 13 s a 2 s en un flujo de más de 50 millones de requests por hora, paralelizando con Spring WebFlux.',
       'Desarrollé y mantuve microservicios de alto tráfico, con monitoreo, alertas e incidentes de producción.',
-      'Incorporé IA generativa al flujo de desarrollo: Claude Code, Codex, Cursor, Windsurf y GitHub Copilot.',
-      'Mantuve 100 % de code coverage, controlando complejidad con la métrica CRAP.',
+      'Construí un harness de IA sobre Claude Code para trabajar en codebases grandes: skills propias para investigar bugs y refactorizar, memoria persistente, tools de pruebas funcionales y menor consumo de tokens. Me ayudó a identificar la causa del endpoint de 13 s.',
+      'Validé el código, propio y generado con IA, con quality gates de métrica CRAP y complejidad ciclomática, manteniendo 100 % de code coverage.',
     ],
   },
   {
@@ -59,10 +58,11 @@ export const experiencia = [
     periodo: 'Ene 2024 – Ene 2026',
     modalidad: 'Remoto, Chile',
     logros: [
-      'Diseñé y construí de punta a punta el sistema de cancelación de órdenes de compra de la bolsa NUAM (Chile, Perú y Colombia), soportando 10.000 requests por minuto.',
+      'Diseñé y construí de punta a punta, sin Tech Lead ni arquitecto asignado, el sistema de cancelación de órdenes de compra de la bolsa con Java 17, Spring Boot 3 y Kafka, soportando 10.000 requests por minuto (el máximo del motor).',
+      'Resolví en un mismo diseño la cancelación automática de Chile y Perú (~200 ms) y el proceso manual de Colombia, integrando sus respuestas asíncronas vía socket, Kafka y webhooks.',
       'Reduje la comunicación con el motor Nasdaq de 5 s a 200 ms.',
-      'Integré la lógica legacy de las distintas bolsas al motor NUAM con Java 17 y Spring Boot 3, con más de 90 % de code coverage.',
-      'Diseñé microservicios orientados a eventos con Kafka y Redis, desplegados en Kubernetes.',
+      'Integré la lógica legacy de las distintas bolsas al motor NUAM con microservicios orientados a eventos (Kafka, Redis) desplegados en Kubernetes.',
+      'Traduje requerimientos de negocio y decisiones técnicas para stakeholders no técnicos en un equipo Scrum.',
     ],
   },
   {
@@ -72,8 +72,8 @@ export const experiencia = [
     modalidad: 'Remoto, Chile',
     logros: [
       'Integré los medios de pago BCI y MACH con sistemas POS y completé la certificación MACH; la solución la adoptaron dos grandes cadenas farmacéuticas.',
-      'Implementé pipelines ETL con Dataflow y BigQuery, procesando cerca de 2 millones de registros por ejecución.',
-      'Desarrollé microservicios con Java 8/11 y Spring Boot, con más de 90 % de code coverage.',
+      'Implementé pipelines ETL con Dataflow y BigQuery, procesando cerca de 2 millones de registros por ejecución, integrando fuentes MySQL con microservicios y Pentaho.',
+      'Desarrollé funcionalidades frontend con TypeScript y Angular para el equipo ITAM.',
     ],
   },
 ];
@@ -81,7 +81,9 @@ export const experiencia = [
 export const habilidades = [
   { area: 'Lenguajes', items: ['Java 8/11/17', 'TypeScript', 'JavaScript', 'Python'] },
   { area: 'Backend', items: ['Spring Boot', 'Spring WebFlux', 'APIs REST', 'SOAP', 'Microservicios', 'Event-driven'] },
-  { area: 'Mensajería y datos', items: ['Kafka', 'Redis', 'BigQuery', 'Dataflow', 'Pentaho'] },
-  { area: 'Cloud y DevOps', items: ['GCP', 'Docker', 'Kubernetes', 'Git', 'OpenAPI'] },
+  { area: 'Bases de datos', items: ['SQL', 'PostgreSQL', 'MySQL', 'BigQuery', 'NoSQL'] },
+  { area: 'Mensajería y datos', items: ['Kafka', 'Redis', 'Dataflow', 'Pentaho'] },
+  { area: 'Cloud y DevOps', items: ['GCP', 'Docker', 'Kubernetes', 'GitHub Actions', 'Jenkins', 'Git', 'OpenAPI'] },
+  { area: 'Prácticas', items: ['SOLID', 'Clean Architecture', 'Testing', 'Métrica CRAP', 'Code review', 'Scrum'] },
   { area: 'IA en desarrollo', items: ['Claude Code', 'Codex', 'Cursor', 'Windsurf', 'GitHub Copilot'] },
 ];

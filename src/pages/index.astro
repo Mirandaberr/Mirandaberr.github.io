@@ -28,6 +28,7 @@ const escritos = (await getCollection('escritos', ({ data }) => !data.borrador))
         <a class="boton primario" href={sitio.cv} download>Descargar CV</a>
         <a class="boton" href="#contacto">Contactar</a>
       </div>
+      <p class="cv-en"><a href={sitio.cvEn} download hreflang="en">English resume (PDF)</a></p>
     </div>
   </section>
 
@@ -111,6 +112,7 @@ const escritos = (await getCollection('escritos', ({ data }) => !data.borrador))
   .rol { font-family: var(--pixel); font-size: clamp(1.5rem, 5vw, 1.8rem); color: var(--accent); margin: 0.2rem 0 1rem; white-space: nowrap; }
   .resumen { max-width: 36rem; margin: 0; }
   .acciones { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+  .cv-en { margin: 1rem 0 0; font-size: 0.9rem; }
 
   @media (max-width: 40rem) {
     .hero { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 2.5rem; }
