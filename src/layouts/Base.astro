@@ -12,6 +12,8 @@ const { titulo, descripcion = sitio.descripcion } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} · ${sitio.autor}` : sitio.titulo;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // El enlace a "Escritos" aparece solo cuando hay al menos uno publicado.
+const enEscritos = Astro.url.pathname.startsWith('/escritos');
+const ogImagen = new URL(sitio.ogImagen, Astro.site);
 const hayEscritos = (await getCollection('escritos', ({ data }) => !data.borrador)).length > 0;
 ---
 <!doctype html>
@@ -22,23 +24,31 @@ const hayEscritos = (await getCollection('escritos', ({ data }) => !data.borrado
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#120c04" />
     <meta property="og:title" content={tituloCompleto} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={sitio.titulo} />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
     <header class="cabecera">
       <nav class="contenedor">
         <a href="/" class="marca">Jorge Miranda</a>
         <div class="links">
-          {hayEscritos && <a href="/escritos/">Escritos</a>}
+          {hayEscritos && <a href="/escritos/" aria-current={enEscritos ? 'page' : undefined}>Escritos</a>}
           <a href="/#contacto">Contacto</a>
           <a href={sitio.cv} download>CV</a>
         </div>
       </nav>
     </header>
-    <main class="contenedor">
+    <main class="contenedor" id="contenido" tabindex="-1">
       <slot />
     </main>
     <footer class="contenedor pie muted">
@@ -56,7 +66,16 @@ const hayEscritos = (await getCollection('escritos', ({ data }) => !data.borrado
   .marca { font-family: var(--pixel); font-size: 1.7rem; color: var(--accent); text-decoration: none; }
   .links { display: flex; gap: 1.25rem; font-family: var(--pixel); font-size: 1.4rem; }
   .links a { color: var(--muted); text-decoration: none; }
-  .links a:hover { color: var(--accent); }
+  .links a:hover, .links a[aria-current='page'] { color: var(--accent); }
+  .links a[aria-current='page']::before { content: '>'; margin-right: 0.3rem; }
+  main:focus { outline: none; }
+  /* Off-screen until focused with the keyboard. */
+  .saltar {
+    position: absolute; left: 1rem; top: -4rem; z-index: 1;
+    padding: 0.4rem 0.9rem; font-family: var(--pixel); font-size: 1.3rem;
+    background: var(--accent); color: var(--accent-ink); text-decoration: none;
+  }
+  .saltar:focus { top: 0.6rem; }
   .pie {
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
     border-top: 2px dashed var(--line); margin-top: 4rem; padding-top: 1.25rem; padding-bottom: 2rem;

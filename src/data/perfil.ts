@@ -7,40 +7,39 @@ export const presentacion = {
   roles: [
     'Software Engineer',
     'Backend Software Engineer',
-    'Software Developer',
     'Backend Developer',
-    'Software Engineer Fullstack',
-    'Programador Backend',
-    'Programador Fullstack',
   ],
   ubicacion: 'Santiago, Chile',
   resumen:
     'Construyo sistemas de alto volumen para e-commerce, mercado bursátil y medios de pago. Foco en backend con Java, Spring Boot, Kafka y Redis, y experiencia en frontend, pipelines de datos e IA aplicada al desarrollo. Me muevo cómodo entre el código y el negocio: traduzco lo que necesitan los stakeholders en decisiones técnicas y las explico en un lenguaje que todos entienden.',
 };
 
+// Quick-scan layer: the full story of each highlight lives in its experience
+// entry (`experiencia` points to that entry's `id`), so text is not repeated.
 export const destacados = [
   {
     cifra: '13 s → 2 s',
     titulo: 'Endpoint crítico en Mercado Libre',
-    detalle:
-      'En un flujo de más de 50 millones de requests por hora, paralelizando con Spring WebFlux operaciones que se ejecutaban en secuencia.',
+    contexto: '+50 millones de requests por hora',
+    experiencia: 'mercado-libre',
   },
   {
     cifra: '3 bolsas',
     titulo: 'Cancelación de órdenes en NUAM',
-    detalle:
-      'Diseñé y construí el sistema para Chile, Perú y Colombia (Java 17, Spring Boot 3, Kafka) sin Tech Lead ni arquitecto asignado.',
+    contexto: 'Chile, Perú y Colombia, sin Tech Lead',
+    experiencia: 'nuam',
   },
   {
     cifra: '5 s → 200 ms',
     titulo: 'Integración con el motor Nasdaq',
-    detalle:
-      'Optimicé la comunicación entre los motores legacy de las bolsas de Chile, Perú y Colombia y el motor de Nasdaq.',
+    contexto: 'Motores legacy de tres bolsas',
+    experiencia: 'nuam',
   },
 ];
 
 export const experiencia = [
   {
+    id: 'mercado-libre',
     cargo: 'Software Engineer Semi Senior',
     empresa: 'Mercado Libre',
     periodo: 'Ene 2026 – Jul 2026',
@@ -53,6 +52,7 @@ export const experiencia = [
     ],
   },
   {
+    id: 'nuam',
     cargo: 'Software Engineer',
     empresa: 'Gatblac – Célula NUAM',
     periodo: 'Ene 2024 – Ene 2026',
@@ -66,6 +66,7 @@ export const experiencia = [
     ],
   },
   {
+    id: 'ibss',
     cargo: 'Consultor Especialista',
     empresa: 'IBSS Consulting SpA',
     periodo: 'Ene 2022 – Ene 2024',

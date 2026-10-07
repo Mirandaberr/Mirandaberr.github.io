@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titulo="Página no encontrada">
+  <section class="error">
+    <p class="muted comando">$ cd {'<ruta>'}</p>
+    <h1>404</h1>
+    <p>cd: no such file or directory. La página que buscas no existe o cambió de lugar.</p>
+    <div class="acciones">
+      <a class="boton primario" href="/">Volver al inicio</a>
+      <a class="boton" href="/#contacto">Contacto</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .error { padding: 5rem 0 2rem; }
+  .comando { margin: 0; font-size: 0.9rem; }
+  h1 { font-size: clamp(5rem, 22vw, 9rem); margin: 0; color: var(--accent); line-height: 1; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+</style>

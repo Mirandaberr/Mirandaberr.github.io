@@ -46,6 +46,7 @@ h2 { font-size: 2.2rem; margin: 4rem 0 1.25rem; color: var(--accent); }
 /* Prompt de terminal antes de cada sección. */
 h2::before { content: '> '; color: var(--muted); }
 h3 { font-size: 1.5rem; }
+p, li { text-wrap: pretty; }
 
 .etiqueta {
   display: inline-block;
@@ -71,7 +72,10 @@ h3 { font-size: 1.5rem; }
   box-shadow: 4px 4px 0 var(--line);
   transition: transform 80ms steps(2), box-shadow 80ms steps(2);
 }
-.boton:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--line); }
+/* Hover lift only on devices that can hover: on touch it would stick after a tap. */
+@media (hover: hover) {
+  .boton:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--line); }
+}
 .boton:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--line); }
 .boton.primario { background: var(--accent); color: var(--accent-ink); }
 

@@ -11,5 +11,6 @@ export const sitio = {
   linkedin: 'https://www.linkedin.com/in/jmiranda-berrios/',
   github: 'https://github.com/Mirandaberr',
   cv: '/cv/CV_Jorge_Miranda_Software_Engineer.pdf',
+  ogImagen: '/og.png',
   cvEn: '/cv/CV_Jorge_Miranda_Software_Engineer_EN.pdf',
 };
